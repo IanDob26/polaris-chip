@@ -15,6 +15,7 @@ export class MyCard extends LitElement {
   constructor() {
     super();
     this.title = "My card";
+    
   }
 
   static get styles() {
