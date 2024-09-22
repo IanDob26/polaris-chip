@@ -14,20 +14,65 @@ export class MyCard extends LitElement {
 
   constructor() {
     super();
-    this.title = "My card";
+    this.title = "card title";
+    
     
   }
 
   static get styles() {
     return css`
-      :host {
-        display: block;
-      }
+    .buttons{
+  background-color:red;
+  width: 525px;
+}
+.list{
+  display: inline-block;
+}
+
+.card{
+    background-color:aqua;
+   border-radius: 16px;
+  font-size: 20px;
+  padding:16px;
+  width:300px;
+  margin: 8px 8px;
+}
+.fancy{
+    background-color: orange;
+}
+.image{
+   height: 200px;
+  width: 300px;
+}
+.details{
+
+  background-color: red;
+  color: white;
+  font-size: 25px;
+  display:none;
+}
+@media(max-width: 800px){
+    .details{
+      display: inline;
+    }
+@media ( max-width: 500px){
+    .details{
+      display: none;
+    }
+
     `;
   }
 
   render() {
-    return html`<div>${this.title}</div>`;
+    return html`
+    <div class="card">
+    <h1 class="title">John Activision</h1>
+    <img class="image"src="https://i.kym-cdn.com/entries/icons/facebook/000/027/707/henry.jpg"/>
+    <p class="description"> This is John he breaks the games </p>
+
+  <a href="https://hax.psu.edu"><button class="details"> Details</button></button></a>
+  </div>
+  `;
   }
 
   static get properties() {
