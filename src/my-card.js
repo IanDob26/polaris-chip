@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit';
+import { property } from 'lit/decorators.js';
 
 /**
  * Now it's your turn. Here's what we need to try and do:
@@ -6,21 +7,35 @@ import { LitElement, html, css } from 'lit';
  * 2. Get your CSS rescoped as needed to work here
  */
 
+//exports everything
 export class MyCard extends LitElement {
 
   static get tag() {
     return 'my-card';
   }
 
-  constructor() {
-    super();
-    this.title = "card title";
-    
-    
-  }
 
-  static get styles() {
-    return css`
+
+
+ static get styles() {
+    return css` 
+    :host{
+     display: inline-flex; 
+    }
+    q {
+        background-color: red;
+        color: black;
+        font-size: 24px;
+        padding: 20px;
+        margin: 10px;
+        text-decoration: none;
+      }
+
+    .buttons{
+  background-color:red;
+  width: 525px;
+}
+
     .buttons{
   background-color:red;
   width: 525px;
@@ -45,12 +60,12 @@ export class MyCard extends LitElement {
   width: 300px;
 }
 .details{
-
   background-color: red;
   color: white;
   font-size: 25px;
   display:none;
 }
+
 @media(max-width: 800px){
     .details{
       display: inline;
@@ -62,22 +77,43 @@ export class MyCard extends LitElement {
 
     `;
   }
+  //constructor
+  constructor() {
+    super();
+    this.title = "John Activision";
+    this.text = "This is John he breaks the game";
+    this.image = "https://i.kym-cdn.com/entries/icons/facebook/000/027/707/henry.jpg";
+  }
 
+ 
+//returns the stuff
   render() {
     return html`
-    <div class="card">
-    <h1 class="title">John Activision</h1>
-    <img class="image"src="https://i.kym-cdn.com/entries/icons/facebook/000/027/707/henry.jpg"/>
-    <p class="description"> This is John he breaks the games </p>
+    <q>
+    <div>${this.title}</div>
+  <p>  ${this.text} </p>
+    <b>${this.card}</b>
 
+
+   <!-- <div class="card">
+    <h1> ${this.title} </h1>
+    <img class ="image"src="https://i.kym-cdn.com/entries/icons/facebook/000/027/707/henry.jpg"/>
+    <p>  ${this.text} </p>
   <a href="https://hax.psu.edu"><button class="details"> Details</button></button></a>
-  </div>
-  `;
+  </div> -->
+    `;
+  
+    /* If it doesn;t work just put this in between the ``^
+    class="title">John Activision
+    class="description"> This is John he breaks the games
+  */
   }
 
   static get properties() {
     return {
       title: { type: String },
+      text: { type: String },
+      image:{ type: String},
     };
   }
 }
