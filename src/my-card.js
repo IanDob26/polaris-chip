@@ -14,9 +14,6 @@ export class MyCard extends LitElement {
     return 'my-card';
   }
 
-
-
-
  static get styles() {
     return css` 
     :host{
@@ -29,6 +26,7 @@ export class MyCard extends LitElement {
         padding: 20px;
         margin: 10px;
         text-decoration: none;
+       
       }
 
     .buttons{
@@ -55,7 +53,7 @@ export class MyCard extends LitElement {
 .fancy{
     background-color: orange;
 }
-.image{
+.images{
    height: 200px;
   width: 300px;
 }
@@ -80,22 +78,21 @@ export class MyCard extends LitElement {
   //constructor
   constructor() {
     super();
-    this.title = "John Activision";
-    this.text = "This is John he breaks the game";
-    this.image = "https://i.kym-cdn.com/entries/icons/facebook/000/027/707/henry.jpg";
+    this.title = "";
+    this.text = "";
+    
   }
 
  
-//returns the stuff
+//returns the stuff 
   render() {
     return html`
-    <q>
-    <div>${this.title}</div>
-  <p>  ${this.text} </p>
-    <b>${this.card}</b>
-
-
-   <!-- <div class="card">
+    <q>${this.title} <img class ="image"src="https://i.kym-cdn.com/entries/icons/facebook/000/027/707/henry.jpg"/>
+     ${ this.text}</q>
+    
+   <!-- <div class="card"> 
+    class="title">John Activision
+    class="description"> This is John he breaks the games
     <h1> ${this.title} </h1>
     <img class ="image"src="https://i.kym-cdn.com/entries/icons/facebook/000/027/707/henry.jpg"/>
     <p>  ${this.text} </p>
@@ -104,8 +101,7 @@ export class MyCard extends LitElement {
     `;
   
     /* If it doesn;t work just put this in between the ``^
-    class="title">John Activision
-    class="description"> This is John he breaks the games
+   
   */
   }
 
