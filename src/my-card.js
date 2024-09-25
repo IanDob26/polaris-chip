@@ -26,14 +26,7 @@ export class MyCard extends LitElement {
         padding: 20px;
         margin: 10px;
         text-decoration: none;
-       
       }
-
-    .buttons{
-  background-color:red;
-  width: 525px;
-}
-
     .buttons{
   background-color:red;
   width: 525px;
@@ -53,15 +46,17 @@ export class MyCard extends LitElement {
 .fancy{
     background-color: orange;
 }
-.images{
+.image{
    height: 200px;
-  width: 300px;
+  max-width: 200px;
 }
 .details{
   background-color: red;
   color: white;
+  padding:16px;
+  width:100px;
   font-size: 25px;
-  display:none;
+  display: inline
 }
 
 @media(max-width: 800px){
@@ -79,35 +74,41 @@ export class MyCard extends LitElement {
   constructor() {
     super();
     this.title = "";
+    this.image ="#";
     this.text = "";
-    
+    this.details = "";
+    this.link = "#";
   }
 
  
 //returns the stuff 
   render() {
     return html`
-    <q>${this.title} <img class ="image"src="https://i.kym-cdn.com/entries/icons/facebook/000/027/707/henry.jpg"/>
-     ${ this.text}</q>
-    
-   <!-- <div class="card"> 
-    class="title">John Activision
-    class="description"> This is John he breaks the games
-    <h1> ${this.title} </h1>
-    <img class ="image"src="https://i.kym-cdn.com/entries/icons/facebook/000/027/707/henry.jpg"/>
-    <p>  ${this.text} </p>
-  <a href="https://hax.psu.edu"><button class="details"> Details</button></button></a>
-  </div> -->
+    <!-- <q>${this.title} < image class = "images" src="https://i.kym-cdn.com/entries/icons/facebook/000/027/707/henry.jpg"/>
+     ${ this.text}</q> -->
+     <div id="cardlist">
+        <div class="card">
+          <img
+            class="image"
+            src= ${this.image} 
+          />
+          <h1 class="title">${this.title}</h1>
+          <p class="text">${this.text}</p>
+          <a class="link" href=${this.link}>
+            <button class="details">${this.details}</button>
+          </a>
+        </div>
+      </div>  
+  
+  
     `;
   
-    /* If it doesn;t work just put this in between the ``^
-   
-  */
-  }
 
+  }
   static get properties() {
     return {
       title: { type: String },
+      link:{ type: String},
       text: { type: String },
       image:{ type: String},
     };
