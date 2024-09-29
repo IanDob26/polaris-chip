@@ -19,6 +19,9 @@ export class MyCard extends LitElement {
     :host{
      display: inline-flex; 
     }
+    :host([fancy]) .card {
+        background-color: goldenrod;
+      }
     q {
         background-color: red;
         color: black;
@@ -43,21 +46,36 @@ export class MyCard extends LitElement {
   width:300px;
   margin: 8px 8px;
 }
-.fancy{
-    background-color: orange;
-}
+
 .image{
    height: 200px;
   max-width: 200px;
 }
 .details{
-  background-color: red;
-  color: white;
+  background-color:red;
+  color:white;
   padding:16px;
   width:100px;
   font-size: 25px;
   display: inline
 }
+details summary {
+    text-align: left;
+    font-size: 20px;
+    padding: 8px 0;
+  }
+
+  details[open] summary {
+    font-weight: bold;
+  }
+  
+  details div {
+    border: 2px solid black;
+    text-align: left;
+    padding: 8px;
+    height: 70px;
+    overflow: auto;
+  }
 
 @media(max-width: 800px){
     .details{
@@ -70,6 +88,7 @@ export class MyCard extends LitElement {
 
     `;
   }
+  
   //constructor
   constructor() {
     super();
@@ -78,6 +97,7 @@ export class MyCard extends LitElement {
     this.text = "";
     this.details = "";
     this.link = "#";
+    this.fancy =false;
   }
 
  
@@ -94,23 +114,38 @@ export class MyCard extends LitElement {
           />
           <h1 class="title">${this.title}</h1>
           <p class="text">${this.text}</p>
+          <details ?open="${this.fancy}" @toggle="${this.openChanged}">
+       <summary>Description</summary>
+       <div>
+        <slot>${this.text2}</slot>
+       </div>
+        </details>
+        
           <a class="link" href=${this.link}>
             <button class="details">${this.details}</button>
           </a>
+          
         </div>
       </div>  
-  
-  
     `;
-  
-
+  }
+  openChanged(e) {
+    console.log(e.newState);
+    if (e.newState === "open") {
+      this.fancy = true;
+    }
+    else {
+      this.fancy = false;
+    }
   }
   static get properties() {
     return {
       title: { type: String },
       link:{ type: String},
       text: { type: String },
+      text2:{ type: String},
       image:{ type: String},
+      fancy: { type: Boolean, reflect: true }
     };
   }
 }
